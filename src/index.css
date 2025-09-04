@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 27 15% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 27 15% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 27 15% 8%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 39 77% 88%;
+    --secondary-foreground: 27 15% 8%;
+
+    --muted: 39 77% 95%;
+    --muted-foreground: 27 15% 45%;
+
+    --accent: 197 37% 24%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 39 77% 88%;
+    --input: 39 77% 88%;
+    --ring: 142 76% 36%;
+
+    /* Custom terrain colors */
+    --terrain-mountain: 197 37% 24%;
+    --terrain-forest: 142 76% 36%;
+    --terrain-desert: 39 77% 70%;
+    --terrain-coastal: 197 71% 73%;
+    --terrain-plain: 142 39% 85%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%), hsl(197 37% 24%));
+    --gradient-terrain: linear-gradient(180deg, hsl(142 76% 36% / 0.1), hsl(197 37% 24% / 0.1));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(39 77% 95%));
+
+    /* Shadows */
+    --shadow-terrain: 0 10px 30px -5px hsl(142 76% 36% / 0.2);
+    --shadow-card: 0 4px 20px -2px hsl(27 15% 8% / 0.1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 27 15% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 27 15% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 27 15% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 142 76% 36%;
+    --primary-foreground: 27 15% 8%;
+
+    --secondary: 27 15% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 27 15% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 197 37% 24%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 27 15% 20%;
+    --input: 27 15% 20%;
+    --ring: 142 76% 36%;
+
+    /* Dark terrain colors */
+    --terrain-mountain: 197 37% 30%;
+    --terrain-forest: 142 76% 40%;
+    --terrain-desert: 39 77% 60%;
+    --terrain-coastal: 197 71% 65%;
+    --terrain-plain: 142 39% 75%;
+
+    /* Dark gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%), hsl(197 37% 30%));
+    --gradient-terrain: linear-gradient(180deg, hsl(142 76% 36% / 0.2), hsl(197 37% 30% / 0.2));
+    --gradient-card: linear-gradient(135deg, hsl(27 15% 10%), hsl(27 15% 15%));
+
+    /* Dark shadows */
+    --shadow-terrain: 0 10px 30px -5px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

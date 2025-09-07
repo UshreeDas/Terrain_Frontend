@@ -1,4 +1,3 @@
-// src/utils/terrainService.ts
 import { API_URL } from "@/config";
 
 export type Geology = Record<string, string | number | null | undefined>;
@@ -7,8 +6,8 @@ export type PredictRequest = {
   latitude: number;
   longitude: number;
   include_terrain_png?: boolean;
-  grid_size?: number;      // default 50
-  variation?: number;      // default 50
+  grid_size?: number;
+  variation?: number;
 };
 
 export type PredictResponse = {
@@ -19,19 +18,27 @@ export type PredictResponse = {
 };
 
 export async function predictGeology(body: PredictRequest): Promise<PredictResponse> {
+  console.log("POST /predict ->", body, "API_URL:", API_URL);
+
   const res = await fetch(`${API_URL}/predict`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+
+  const data = await res.json().catch(() => ({}));
+
   if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err?.error || err?.message || `HTTP ${res.status}`);
+    // Treat Flask's 404 as "no match" instead of throwing
+    if (res.status === 404 && (data?.message || data?.state === null)) {
+      return { state: null, geology: null, message: data?.message ?? "No match found" };
+    }
+    throw new Error(data?.error || data?.message || `HTTP ${res.status}`);
   }
-  return res.json();
+  return data;
 }
 
-/** Direct PNG (server renders) — handy if you don’t request base64 in /predict */
+/** Direct image URL if you didn't request base64 */
 export function terrainPngURL(lat: number, lon: number, grid = 50, variation = 50) {
   const p = new URL(`${API_URL}/terrain`);
   p.searchParams.set("lat", String(lat));

@@ -21,6 +21,9 @@ export default function TerrainPredictor() {
 
   const terrainImg = useMemo(() => {
     if (!data) return null;
+    // only show if we have elevation info
+    const hasElev = data.geology && (data.geology as any)?.Average_Elevation_m != null;
+    if (!hasElev) return null;
     if (data.terrain_png_b64) return `data:image/png;base64,${data.terrain_png_b64}`;
     return terrainPngURL(lat, lon, grid, variation);
   }, [data, lat, lon, grid, variation]);
@@ -37,12 +40,13 @@ export default function TerrainPredictor() {
         variation,
       });
       setData(resp);
-      toast({
-        title: resp.state ? `Result: ${resp.state}` : "Location not matched",
-        description: resp.state
-          ? "Geological details retrieved successfully."
-          : resp.message ?? "Try different coordinates.",
-      });
+
+      if (!resp.state) {
+        toast({ title: "No matching state", description: resp.message ?? "Try different coordinates." });
+        return;
+      }
+
+      toast({ title: `Result: ${resp.state}`, description: "Geological details retrieved successfully." });
     } catch (e: any) {
       toast({ title: "Request failed", description: e.message, variant: "destructive" });
     } finally {
@@ -113,6 +117,13 @@ export default function TerrainPredictor() {
           <CardContent className="space-y-6">
             {!data && !loading && (
               <p className="text-muted-foreground">Enter coordinates and click <b>Analyze</b>.</p>
+            )}
+
+            {data && !data.state && (
+              <div className="rounded-lg border p-4">
+                <div className="text-sm text-muted-foreground">Message</div>
+                <div className="font-medium">{data.message ?? "No match found"}</div>
+              </div>
             )}
 
             {data?.state && (

@@ -1,6 +1,6 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
-import TerrainAnalysis from "@/components/TerrainAnalysis";
+import TerrainPredictor from "@/components/TerrainPredictor";
 import TerrainCards from "@/components/TerrainCards";
 import AboutSection from "@/components/AboutSection";
 
@@ -9,24 +9,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
-      <TerrainAnalysis />
+      <TerrainPredictor />   {/* replaces TerrainAnalysis */}
       <TerrainCards />
       <AboutSection />
-      
-      {/* Footer */}
       <footer className="bg-muted py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <p className="text-muted-foreground mb-4">
-              © 2024 TerrainAI India. Advanced terrain recognition for a better tomorrow.
-            </p>
-            <div className="flex justify-center space-x-6 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Privacy</a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Terms</a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Support</a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">API Docs</a>
-            </div>
-          </div>
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-muted-foreground">© 2025 TerrainAI India.</p>
         </div>
       </footer>
     </div>
